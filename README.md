@@ -11,11 +11,13 @@ How to run:
 
 Edit src\test\resources\services-test-context.xml and set the database url and credentials:
 
+```
 <!-- TODO Change database url and credentials -->
 <bean id="graphDatabaseService" class="org.springframework.data.neo4j.rest.SpringCypherRestGraphDatabase">
    <constructor-arg value="http://xxx.sb04.stations.graphenedb.com:24789/db/data/" index="0"/>
    <constructor-arg value="yyy" index="1"/>
    <constructor-arg value="zzz" index="2"/>
 </bean>
+```
 
 Run test com.mypackage.api.user.service.UserServiceImplTest
