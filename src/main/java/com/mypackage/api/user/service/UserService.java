@@ -4,9 +4,11 @@ import com.mypackage.api.user.domain.User;
 
 public interface UserService {
 
-   void create(User user);
+   User create(User user);
 
-   User findUserByMail(String mail);
+   User update(User user);
 
-   User findBySomeCriteria(String criteria);
+   void delete(User user);
+
+   User findUserById(String mail);
 }

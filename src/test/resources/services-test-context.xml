@@ -20,11 +20,14 @@
    <neo4j:config graphDatabaseService="graphDatabaseService" base-package="com.mypackage.api.user"/>
    <neo4j:repositories base-package="com.mypackage.api.user.repository"/>
 
-   <!-- TODO Change database url and credentials -->
+   <bean class="com.mypackage.api.user.domain.config.Neo4jConfig"/>
+
+    <bean id="identifierFactory" class="com.mypackage.api.user.identifier.IdentifierFactoryImpl"/>
+
    <bean id="graphDatabaseService" class="org.springframework.data.neo4j.rest.SpringCypherRestGraphDatabase">
-      <constructor-arg value="http://xxx.sb04.stations.graphenedb.com:24789/db/data/" index="0"/>
-      <constructor-arg value="yyy" index="1"/>
-      <constructor-arg value="zzz" index="2"/>
+      <constructor-arg value="http://test.sb04.stations.graphenedb.com:24789/db/data/" index="0"/>
+      <constructor-arg value="test" index="1"/>
+      <constructor-arg value="sNi8wEpkLMVGBpCx2HOr" index="2"/>
    </bean>
 
 </beans>

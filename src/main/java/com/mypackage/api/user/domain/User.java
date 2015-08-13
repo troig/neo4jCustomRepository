@@ -1,18 +1,24 @@
 package com.mypackage.api.user.domain;
 
-import org.springframework.data.neo4j.annotation.GraphId;
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
-import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
-@NodeEntity()
-public class User  {
+import java.util.Set;
 
-   @SuppressWarnings("UnusedDeclaration")
-   @GraphId
-   private Long nodeId;
+/**
+ * Intern user information
+ *
+ * @author Tomeu Roig
+ */
+public class User extends IdentifiableEntity {
 
    @Indexed
-   String mail;
+   private String mail;
+
+   /** User stays */
+   @RelatedTo(type = "HAS_STAY",  direction = Direction.OUTGOING)
+   Set<Stay> stays;
 
    public String getMail() {
       return mail;
@@ -22,21 +28,11 @@ public class User  {
       this.mail = mail;
    }
 
-
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (!(o instanceof User)) return false;
-
-      User user = (User) o;
-
-      if (!mail.equals(user.mail)) return false;
-
-      return true;
+   public Set<Stay> getStays() {
+      return stays;
    }
 
-   @Override
-   public int hashCode() {
-      return mail.hashCode();
+   public void addStay(Stay stay) {
+      stays.add(stay);
    }
 }

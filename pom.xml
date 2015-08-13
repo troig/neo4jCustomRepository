@@ -11,7 +11,7 @@
 
    <properties>
       <spring.version>4.0.5.RELEASE</spring.version>
-      <spring-data-neo4j.version>3.3.0.RELEASE</spring-data-neo4j.version>
+      <spring-data-neo4j.version>3.3.2.RELEASE</spring-data-neo4j.version>
       <jersey.version>1.4</jersey.version>
    </properties>
 

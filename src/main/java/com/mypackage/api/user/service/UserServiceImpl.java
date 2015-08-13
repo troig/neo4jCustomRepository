@@ -12,17 +12,22 @@ public class UserServiceImpl implements UserService {
    UserRepository userRepository;
 
    @Override
-   public void create(User user) {
-      userRepository.save(user);
+   public User create(User user) {
+      return userRepository.save(user);
    }
 
    @Override
-   public User findUserByMail(String mail) {
-      return userRepository.findBySchemaPropertyValue("mail", mail);
+   public User update(User user) {
+      return userRepository.save(user);
    }
 
    @Override
-   public User findBySomeCriteria(String criteria) {
-      return userRepository.findBySomeCriteria(criteria);
+   public void delete(User user) {
+      userRepository.delete(user);
+   }
+
+   @Override
+   public User findUserById(String mail) {
+      return userRepository.findBySchemaPropertyValue("id", mail);
    }
 }
