@@ -2,105 +2,164 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-   <groupId>com.mypackage</groupId>
-   <artifactId>neo4jCustomRepository</artifactId>
-   <version>1.0-SNAPSHOT</version>
-   <packaging>jar</packaging>
+    <groupId>com.mypackage</groupId>
+    <artifactId>neo4jCustomRepository</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-   <properties>
-      <spring.version>4.0.5.RELEASE</spring.version>
-      <spring-data-neo4j.version>3.3.2.RELEASE</spring-data-neo4j.version>
-      <jersey.version>1.4</jersey.version>
-   </properties>
+    <properties>
+        <spring.version>4.3.1.RELEASE</spring.version>
+        <spring-data-neo4j.version>4.2.0.M1</spring-data-neo4j.version>
+        <neo4j.ogm.version>2.0.5</neo4j.ogm.version>
+        <jersey.version>1.4</jersey.version>
+    </properties>
 
-   <build>
-      <pluginManagement>
-         <plugins>
-            <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-compiler-plugin</artifactId>
-               <version>3.1</version>
-               <configuration>
-                  <source>1.7</source>
-                  <target>1.7</target>
-               </configuration>
-            </plugin>
-         </plugins>
-      </pluginManagement>
-   </build>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
-   <repositories>
-      <repository>
-         <id>spring-releases</id>
-         <name>Spring Releases</name>
-         <url>https://repo.spring.io/libs-release</url>
-      </repository>
-      <repository>
-         <id>neo4j</id>
-         <name>Neo4j</name>
-         <url>http://m2.neo4j.org/content/groups/everything</url>
-      </repository>
-   </repositories>
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+        <repository>
+            <id>neo4j</id>
+            <url>http://m2.neo4j.org/content/groups/everything</url>
+        </repository>
+    </repositories>
 
-   <pluginRepositories>
-      <pluginRepository>
-         <id>spring-releases</id>
-         <name>Spring Releases</name>
-         <url>https://repo.spring.io/libs-release</url>
-      </pluginRepository>
-      <pluginRepository>
-         <id>neo4j</id>
-         <name>Neo4j</name>
-         <url>http://m2.neo4j.org/content/groups/everything</url>
-      </pluginRepository>
-   </pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>neo4j</id>
+            <url>http://m2.neo4j.org/content/groups/everything</url>
+        </pluginRepository>
+    </pluginRepositories>
 
-   <dependencies>
+    <dependencies>
 
-      <!-- Spring-data-neo4j -->
-      <dependency>
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-neo4j</artifactId>
-         <version>${spring-data-neo4j.version}</version>
-      </dependency>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <dependency>
-         <groupId>org.springframework.data</groupId>
-         <artifactId>spring-data-neo4j-rest</artifactId>
-         <version>${spring-data-neo4j.version}</version>
-      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <!-- Javax validation -->
-      <dependency>
-         <groupId>javax.validation</groupId>
-         <artifactId>validation-api</artifactId>
-         <version>1.0.0.GA</version>
-      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <!-- Jersey -->
-      <dependency>
-         <groupId>com.sun.jersey</groupId>
-         <artifactId>jersey-client</artifactId>
-         <version>${jersey.version}</version>
-      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <!-- Testing -->
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>4.9</version>
-         <scope>test</scope>
-      </dependency>
 
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-test</artifactId>
-         <version>${spring.version}</version>
-         <scope>test</scope>
-      </dependency>
+        <!-- Spring-data-neo4j -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-neo4j</artifactId>
+            <version>${spring-data-neo4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-neo4j-rest</artifactId>
+            <version>3.4.2.RELEASE</version>
+            <!--exclusions>
+                <exclusion>
+                    <artifactId>neo4j-cypher-compiler-2.1</artifactId>
+                    <groupId>org.neo4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>neo4j-cypher-compiler-2.0</artifactId>
+                    <groupId>org.neo4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>neo4j-cypher-compiler-1.9</artifactId>
+                    <groupId>org.neo4j</groupId>
+                </exclusion>
+            </exclusions-->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>1.13.0.M1</version>
+        </dependency>
 
-   </dependencies>
+        <!-- neo-ogm -->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-http-driver</artifactId>
+            <version>${neo4j.ogm.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-core</artifactId>
+            <version>${neo4j.ogm.version}</version>
+        </dependency>
+
+        <!-- Javax validation -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+        </dependency>
+
+        <!-- Jersey -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.1.RELEASE</version>
+        </dependency>
+
+    </dependencies>
 
 </project>

@@ -1,38 +1,55 @@
 package com.mypackage.api.user.domain;
 
-import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.Indexed;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.neo4j.ogm.annotation.Relationship;
 
+import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Intern user information
- *
- * @author Tomeu Roig
- */
-public class User extends IdentifiableEntity {
+public class User extends BasicNodeEntity {
 
-   @Indexed
-   private String mail;
+    private String id;
 
-   /** User stays */
-   @RelatedTo(type = "HAS_STAY",  direction = Direction.OUTGOING)
-   Set<Stay> stays;
+    private String name;
 
-   public String getMail() {
-      return mail;
-   }
+    @Relationship(type = "HAS_ADVERTISER", direction = Relationship.INCOMING)
+    private Set<Ad> ads = new HashSet<>();
 
-   public void setMail(String mail) {
-      this.mail = mail;
-   }
+    @Relationship(type = "IS_FAVOURITE_TO", direction = Relationship.INCOMING)
+    private Set<Ad> favourites = new HashSet<>();
 
-   public Set<Stay> getStays() {
-      return stays;
-   }
+    public String getId() {
+        return id;
+    }
 
-   public void addStay(Stay stay) {
-      stays.add(stay);
-   }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Relationship(type = "HAS_ADVERTISER", direction = Relationship.INCOMING)
+    public Set<Ad> getAds() {
+        return ads;
+    }
+
+    @Relationship(type = "HAS_ADVERTISER", direction = Relationship.INCOMING)
+    public void setAds(Set<Ad> ads) {
+        this.ads = ads;
+    }
+
+    @Relationship(type = "IS_FAVOURITE_TO", direction = Relationship.INCOMING)
+    public Set<Ad> getFavourites() {
+        return favourites;
+    }
+
+    @Relationship(type = "IS_FAVOURITE_TO", direction = Relationship.INCOMING)
+    public void setFavourites(Set<Ad> favourites) {
+        this.favourites = favourites;
+    }
 }

@@ -1,9 +1,9 @@
-# spring-data-neo4j basic one-to-many relationship not persisting
+# Neo4jRepository @Query result error when there are many relationships for same node
 
 Sample project configuration to reproduce the error described in this stackoverflow question:
-https://stackoverflow.com/questions/31948339/spring-data-neo4j-basic-one-to-many-relationship-not-persisting
+http://stackoverflow.com/questions/40201596/neo4jrepository-query-result-error-when-there-are-many-relationships-for-same-n
 
 
 How to run:
 
-Run test com.mypackage.api.user.service.UserServiceImplTest
+Run test com.mypackage.api.user.repository.AdRepositoryTest
